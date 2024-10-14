@@ -1,0 +1,4 @@
+db.url=jdbc:postgresql://localhost:5432/test
+db.username=
+db.password=
+db.driverClassName=org.postgresql.Driver

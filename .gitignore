@@ -1,0 +1,6 @@
+src/main/resources/*.properties
+db/init/init.sql
+.env
+.mvn/
+.vscode/
+target/

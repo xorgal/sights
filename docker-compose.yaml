@@ -1,0 +1,37 @@
+services:
+  sights-db:
+    image: postgres:16.4
+    container_name: sights-db
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      - sights_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - test
+
+  app:
+    build: .
+    container_name: sights-webapp
+    depends_on:
+      - sights-db
+    restart: on-failure
+    # environment:
+    #   - SPRING_PROFILE_ACTIVE=production
+    ports:
+      - "8080:8080"
+    networks:
+      - test
+
+networks:
+  test:
+    driver: bridge
+
+volumes:
+  sights_data:
