@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/towns")
-@Tag(name = "Sights", description = "Operations related to towns")
+@Tag(name = "Town Controller", description = "Operations related to towns")
 public class TownController {
 
     @Autowired
